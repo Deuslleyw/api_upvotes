@@ -1,21 +1,29 @@
 package com.deusley.api_upvotes.domain;
 
+import javax.persistence.*;
 
+@Entity
+@Table(name = "tb_upvotes")
 public class Upvotes {
 
-    private Post post;
-    private Integer value;
+    @EmbeddedId
+    private UpvotesPK id = new UpvotesPK();
 
+    private Integer value;
 
     public Upvotes(){}
 
 
-    public Post getPost() {
-        return post;
+    public void setPost( Post post){
+        id.setPost(post);
     }
 
-    public void setPost(Post post) {
-        this.post = post;
+    public UpvotesPK getId() {
+        return id;
+    }
+
+    public void setId(UpvotesPK id) {
+        this.id = id;
     }
 
     public Integer getValue() {
