@@ -4,6 +4,8 @@ package com.deusley.api_upvotes.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Embeddable
 @Entity
@@ -30,5 +32,7 @@ public class Post {
     @Column(name = "curtidas")
     private Integer curtidas;
 
+    @OneToMany(mappedBy = "id.post")
+    private Set<Upvotes> upvotes = new HashSet<>();
 
     }
