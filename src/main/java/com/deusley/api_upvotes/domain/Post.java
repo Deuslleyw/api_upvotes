@@ -10,6 +10,8 @@ import javax.persistence.*;
 @ToString
 @Builder
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Setter
 @Getter
 @Table(name = "tb_posts")
@@ -28,10 +30,5 @@ public class Post {
     @Column(name = "curtidas")
     private Integer curtidas;
 
-    public Post(Long id, String titulo, String descricao, Integer curtidas) {
-        this.id = id;
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.curtidas = curtidas;
+
     }
-}

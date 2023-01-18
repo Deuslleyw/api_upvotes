@@ -20,9 +20,10 @@ public class PostService {
     @Transactional(readOnly = true)
     public Page<PostDTO> findAll(Pageable pageable) {
         Page<Post> result = rep.findAll(pageable);
-        Page<PostDTO> pageDdto = result.map(PostDTO::new);
+        Page<PostDTO> page = result.map( p -> new PostDTO(p));
 
-        return pageDdto;
+        return page;
+
 
     }
 
