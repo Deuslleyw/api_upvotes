@@ -27,9 +27,9 @@ public class PostDTO {
     }
 
     public PostDTO(Post post) {
-        this.id = post.getId();
-        this.titulo = post.getTitulo();
-        this.descricao = post.getDescricao();
-        this.curtidas = post.getCurtidas();
+        id = post.getId();
+        titulo = post.getTitulo();
+        descricao = post.getDescricao();
+        curtidas = post.getCurtidas();
     }
 }
