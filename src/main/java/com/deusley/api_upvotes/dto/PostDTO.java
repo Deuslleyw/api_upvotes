@@ -4,7 +4,11 @@ package com.deusley.api_upvotes.dto;
 import com.deusley.api_upvotes.domain.Post;
 import lombok.*;
 
-
+@Data
+@ToString
+@Builder
+@Setter
+@Getter
 public class PostDTO {
 
     private Long id;
@@ -27,37 +31,5 @@ public class PostDTO {
         titulo = post.getTitulo();
         descricao = post.getDescricao();
         curtidas = post.getCurtidas();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public Integer getCurtidas() {
-        return curtidas;
-    }
-
-    public void setCurtidas(Integer curtidas) {
-        this.curtidas = curtidas;
     }
 }
