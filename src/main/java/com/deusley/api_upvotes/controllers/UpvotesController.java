@@ -2,10 +2,8 @@ package com.deusley.api_upvotes.controllers;
 
 import com.deusley.api_upvotes.dto.PostDTO;
 import com.deusley.api_upvotes.dto.UpvotesDTO;
-import com.deusley.api_upvotes.services.PostService;
+import com.deusley.api_upvotes.services.UpvotesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,11 +11,14 @@ import org.springframework.web.bind.annotation.*;
 public class UpvotesController {
 
     @Autowired
-    private PostService service;
+    private UpvotesService service;
 
     @PostMapping
-    public PostDTO curtir(@RequestBody UpvotesDTO upDTO){
-        return null;
+    public PostDTO saveUpvotes(@RequestBody UpvotesDTO dto){
 
+        PostDTO dtoP = service.saveUpvotes(dto);
+        return dtoP;
     }
 }
+
+

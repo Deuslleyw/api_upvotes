@@ -2,6 +2,7 @@ package com.deusley.api_upvotes.services;
 
 import com.deusley.api_upvotes.domain.Post;
 import com.deusley.api_upvotes.domain.Upvotes;
+import com.deusley.api_upvotes.dto.PostDTO;
 import com.deusley.api_upvotes.dto.UpvotesDTO;
 import com.deusley.api_upvotes.repositories.PostRepository;
 import com.deusley.api_upvotes.repositories.UpvotesRepository;
@@ -15,22 +16,32 @@ public class UpvotesService {
     @Autowired
     private PostRepository rep;
 
+
     @Autowired
-    private UpvotesRepository uprep;
+    private UpvotesRepository upvotesRepository;
 
     @Transactional
-    public void curtir(UpvotesDTO updto){
+    public PostDTO saveUpvotes(UpvotesDTO dto){
 
-        Post post = rep.findById(updto.getPostId()).get();
+
+
+        Post post = rep.findById(dto.getPostId()).get();
 
         Upvotes upvotes = new Upvotes();
         upvotes.setPost(post);
-        upvotes.setValue(updto.getCurtidas());
+        upvotes.setValue(dto.getCurtidas());
 
+        upvotes = upvotesRepository.saveAndFlush(upvotes);
 
-        upvotes = uprep.save(upvotes);
-
-
+        double sum = 0.0;
+        for(Upvotes upvt : post.getUpvotes()) {
+            sum = sum + upvt.getValue();
         }
 
-    }
+        Integer avg = (int) (sum / post.getUpvotes().size());
+        post.setCurtidas(avg);
+
+        post = rep.save(post);
+
+            return new PostDTO(post);
+        }}

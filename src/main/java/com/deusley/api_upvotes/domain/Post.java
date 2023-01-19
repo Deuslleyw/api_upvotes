@@ -14,10 +14,11 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
-@Getter
-@Table(name = "tb_posts")
+@Table(name = "tb_post")
 public class Post {
+
+    @OneToMany(mappedBy = "id.post")
+    private Set<Upvotes> upvotes = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +33,38 @@ public class Post {
     @Column(name = "curtidas")
     private Integer curtidas;
 
-    @OneToMany(mappedBy = "id.post")
-    private Set<Upvotes> upvotes = new HashSet<>();
 
+    public Long getId() {
+        return id;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public Integer getCurtidas() {
+        return curtidas;
+    }
+
+    public void setCurtidas(Integer curtidas) {
+        this.curtidas = curtidas;
+    }
+    public Set<Upvotes> getUvotes() {
+        return upvotes;
+}}
