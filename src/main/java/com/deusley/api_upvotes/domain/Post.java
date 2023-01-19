@@ -1,19 +1,11 @@
 package com.deusley.api_upvotes.domain;
 
-
-import lombok.*;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Embeddable
 @Entity
-@ToString
-@Builder
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "tb_post")
 public class Post {
 
@@ -32,6 +24,11 @@ public class Post {
 
     @Column(name = "curtidas")
     private Integer curtidas;
+
+    public Post(){}
+
+    public Post(Long id, String titulo, String descricao, Integer curtidas) {
+    }
 
 
     public Long getId() {
@@ -67,4 +64,9 @@ public class Post {
     }
     public Set<Upvotes> getUvotes() {
         return upvotes;
-}}
+}
+
+    public Set<Upvotes> getUpvotes() {
+        return upvotes;
+    }
+}
