@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class UpvotesService {
+public class UpvotesService extends RuntimeException {
 
     @Autowired
     private PostRepository rep;
@@ -21,27 +21,35 @@ public class UpvotesService {
     private UpvotesRepository upvotesRepository;
 
     @Transactional
-    public PostDTO saveUpvotes(UpvotesDTO dto){
-
+    public PostDTO saveUpvotes(UpvotesDTO dto) {
 
 
         Post post = rep.findById(dto.getPostId()).get();
 
         Upvotes upvotes = new Upvotes();
+
         upvotes.setPost(post);
         upvotes.setValue(dto.getCurtidas());
+
+         int curtidas = dto.getCurtidas();
+
+        if (curtidas  >1) {
+            throw new RuntimeException("Opss! Voce so pode curtir uma vez.");
+        }
+
+        else {
 
         upvotes = upvotesRepository.saveAndFlush(upvotes);
 
         double sum = 0.0;
-        for(Upvotes upvt : post.getUpvotes()) {
+        for (Upvotes upvt : post.getUpvotes()) {
             sum = sum + upvt.getValue();
         }
 
         Integer avg = (int) (sum / post.getUpvotes().size());
         post.setCurtidas(avg);
-
         post = rep.save(post);
 
-            return new PostDTO(post);
-        }}
+        return new PostDTO(post);
+    }
+}}
