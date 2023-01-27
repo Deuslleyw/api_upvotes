@@ -14,7 +14,7 @@ import java.net.URI;
 
 
 @RestController
-@RequestMapping (value = "/postagens")
+@RequestMapping (value = "api/v1/postagens")
 public class PostController {
 
     @Autowired
@@ -26,11 +26,23 @@ public class PostController {
 
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Post> postar(@RequestBody Post obj){
+    @PostMapping
+    public ResponseEntity<Post> postar(@RequestBody Post obj) {
         obj = service.postar(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 
         return ResponseEntity.created(uri).build();
     }
-}
+
+    @PatchMapping("/curtir/{id}")
+    public ResponseEntity<Void> curtir(@PathVariable Long id) {
+
+        service.curtir(id);
+
+        return ResponseEntity.noContent().build();
+
+
+    }
+
+
+    }

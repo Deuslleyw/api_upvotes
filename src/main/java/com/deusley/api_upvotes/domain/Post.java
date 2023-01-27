@@ -1,16 +1,12 @@
 package com.deusley.api_upvotes.domain;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
-@Embeddable
+
 @Entity
-@Table(name = "tb_post")
+@Table(name = "tb_postgens")
 public class Post {
 
-    @OneToMany(mappedBy = "id.post")
-    private Set<Upvotes> upvotes = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,14 +18,13 @@ public class Post {
     @Column(name = "descricao", length = 380)
     private String descricao;
 
-    @Column(name = "curtidas")
-    private Integer curtidas;
+    @Column
+    private Integer curtidas ;
 
-    public Post(){}
 
-    public Post(Long id, String titulo, String descricao, Integer curtidas) {
+    public Post(){
+
     }
-
 
     public Long getId() {
         return id;
@@ -61,12 +56,5 @@ public class Post {
 
     public void setCurtidas(Integer curtidas) {
         this.curtidas = curtidas;
-    }
-    public Set<Upvotes> getUvotes() {
-        return upvotes;
-}
-
-    public Set<Upvotes> getUpvotes() {
-        return upvotes;
     }
 }
