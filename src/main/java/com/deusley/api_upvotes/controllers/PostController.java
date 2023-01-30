@@ -41,13 +41,18 @@ public class PostController {
 
         return ResponseEntity.noContent().build();
     }
-    @PutMapping (value = "/{id}")
-    public ResponseEntity<Post> update(@PathVariable Long id, @RequestBody Post obj){
+
+    @PutMapping(value = "edit/{id}")
+    public ResponseEntity<Post> update(@PathVariable Long id, @RequestBody Post obj) {
         obj = service.update(id, obj);
         return ResponseEntity.ok().body(obj);
     }
 
-
+    @DeleteMapping(value = "delete/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
 
 
     }
+}

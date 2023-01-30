@@ -3,9 +3,12 @@ package com.deusley.api_upvotes.services;
 import com.deusley.api_upvotes.domain.Post;
 
 import com.deusley.api_upvotes.dto.PostDTO;
+import com.deusley.api_upvotes.exeptions.DatabaseException;
 import com.deusley.api_upvotes.exeptions.ResourceNotFoundException;
 import com.deusley.api_upvotes.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -54,10 +57,11 @@ public class PostService {
             Post entity = rep.getOne(id);
             updateData(entity, obj);
             return rep.save(entity);
-        }catch(EntityNotFoundException e) {
+        } catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException(id);
         }
     }
+
     private void updateData(Post entity, Post obj) {
 
         entity.setTitulo(obj.getTitulo());
@@ -65,4 +69,14 @@ public class PostService {
 
     }
 
+    public void delete(Long id) {
+        try {
+            rep.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new ResourceNotFoundException(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DatabaseException(e.getMessage());
+        }
+
     }
+}

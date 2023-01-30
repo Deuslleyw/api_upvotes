@@ -1,15 +1,9 @@
-# API POSTS and UPVOTES
+# API REST -  POSTS
 
 
 ## 📦 Práticas
 
 Utilizado Spring Boot seguindo os padrões Rest de Clean code e S.O.L.I.D.
-
------------------------------------------------------------------------------
-
-* obs
-
-Lombok (Foi removido (opção minha), mas com a possibilidade de implementar novamente!)
 
 -----------------------------------------------------------------------------
 
@@ -21,14 +15,20 @@ Lombok (Foi removido (opção minha), mas com a possibilidade de implementar nov
 * [SpringBoot](https://spring.io/projects/spring-boot) - Framework Java
 
 -----------------------------------------------------------------------------
+## ENDPOINTS
 
-# EndPoints Postagens
-
-* GET : http://localhost:8081/postagens  // obter postagens
 
 ------------------------------------------------------------------------------
 
-* POST : http://localhost:8081/postagens // salvar uma postagem
+    BUSCAR_POSTS
+
+* GET : http://localhost:8081/api/v1/postagens  
+
+------------------------------------------------------------------------------
+
+    POSTAR
+
+* POST : http://localhost:8081/api/v1/postagens 
 
 * Exemplos de entrada de dados:
 
@@ -37,27 +37,27 @@ Lombok (Foi removido (opção minha), mas com a possibilidade de implementar nov
 "descricao": "Aqui seu texto",
 
 "titulo": "aqui seu titulo"
-
+   
 }
-
-# CURTIDAS
-
-* POST : http://localhost:8081/curtir
-
-* Exemplos de entrada de dados:
-
-{
-
-"postId": "Aqui id da postagem",
-
-"curtidas": "valor <1> por requisição"
-
-}
-
-
 
 -------------------------------------------------------------------------------
-# Banco de dados
+    CURTIDAS
+
+* PATCH : http://localhost:8081/api/v1/curtir/{id_da_postagem}
+
+-------------------------------------------------------------------------------
+    EDITPOST
+
+* PUT : http://localhost:8081/api/v1/edit/{id_da_postagem}
+
+-------------------------------------------------------------------------------
+    DELETEPOST
+
+* DELETE : http://localhost:8081/api/v1/delete/{id_da_postagem}
+
+-------------------------------------------------------------------------------
+
+## Banco de dados
 
 * Utilizados e em operação : Postgres
 * necessário criar o Banco de dados na sua máquina, 
@@ -67,7 +67,12 @@ Lombok (Foi removido (opção minha), mas com a possibilidade de implementar nov
 ------------------------------------------------------------------------------
 ## 📦 Desenvolvido Por 
 
-* Deusley Diego 
+    * Deusley Diego 
 
-* https://github.com/Deuslleyw
+ * https://github.com/Deuslleyw
+* Email: Deuslleyw@hotmail.com
+
+
+
+
 
