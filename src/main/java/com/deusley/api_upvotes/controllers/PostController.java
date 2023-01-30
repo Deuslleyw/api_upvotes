@@ -1,6 +1,7 @@
 package com.deusley.api_upvotes.controllers;
 
 import com.deusley.api_upvotes.domain.Post;
+import com.deusley.api_upvotes.dto.PostNewDTO;
 import com.deusley.api_upvotes.dto.PostDTO;
 import com.deusley.api_upvotes.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,10 @@ public class PostController {
     @GetMapping
     public Page<PostDTO> findAll(Pageable pageable) {
         return service.findAll(pageable);
-
     }
 
     @PostMapping
-    public ResponseEntity<Post> postar(@RequestBody Post obj) {
+    public ResponseEntity<PostNewDTO> postar(@RequestBody Post obj) {
         obj = service.postar(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 
@@ -40,9 +40,8 @@ public class PostController {
         service.curtir(id);
 
         return ResponseEntity.noContent().build();
-
-
     }
+
 
 
     }

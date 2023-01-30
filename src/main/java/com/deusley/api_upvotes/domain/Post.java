@@ -18,12 +18,19 @@ public class Post {
     @Column(name = "descricao", length = 380)
     private String descricao;
 
-    @Column
+    @Column (name = "curtidas")
     private Integer curtidas ;
 
 
-    public Post(){
+    public Post(){}
 
+    public Post(Long id, String titulo, String descricao){}
+
+    public Post(Long id, String titulo, String descricao, Integer curtidas) {
+        this.id = id;
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.curtidas = curtidas;
     }
 
     public Long getId() {

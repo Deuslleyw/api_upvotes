@@ -1,29 +1,29 @@
 package com.deusley.api_upvotes.dto;
 
+
 import com.deusley.api_upvotes.domain.Post;
 
-public class PostDTO {
+
+public class PostNewDTO {
 
     private Long id;
     private String titulo;
     private String descricao;
-    private Integer curtidas;
 
-    public PostDTO() {
+
+    public PostNewDTO() {
     }
 
-    public PostDTO(Long id, String titulo, String descricao, Integer curtidas) {
+    public PostNewDTO(Long id, String titulo, String descricao) {
         this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
-        this.curtidas = curtidas;
     }
 
-    public PostDTO(Post post) {
+    public PostNewDTO(Post post) {
         id = post.getId();
         titulo = post.getTitulo();
         descricao = post.getDescricao();
-        curtidas = post.getCurtidas();
     }
 
     public Long getId() {
@@ -50,11 +50,5 @@ public class PostDTO {
         this.descricao = descricao;
     }
 
-    public Integer getCurtidas() {
-        return curtidas;
-    }
 
-    public void setCurtidas(Integer curtidas) {
-        this.curtidas = curtidas;
-    }
 }

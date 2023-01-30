@@ -37,21 +37,14 @@ public class PostService {
         var post = rep.findById(id).get();
 
         Integer curtidas = 0;
-        if( Objects.nonNull( post.getCurtidas())){
+        if (Objects.nonNull(post.getCurtidas())) {
             curtidas = post.getCurtidas() + 1;
-        }else{
+        } else {
             curtidas = 1;
         }
-
 
         post.setCurtidas(curtidas);
         rep.save(post);
     }
 
-
-    private void atualizaPostagem(Post updatePost, Post objPost) {
-        updatePost.setTitulo(objPost.getTitulo());
-        updatePost.setDescricao(objPost.getDescricao());
-
     }
-}
