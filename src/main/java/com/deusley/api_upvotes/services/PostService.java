@@ -3,6 +3,7 @@ package com.deusley.api_upvotes.services;
 import com.deusley.api_upvotes.domain.Post;
 
 import com.deusley.api_upvotes.dto.PostDTO;
+import com.deusley.api_upvotes.exeptions.ResourceNotFoundException;
 import com.deusley.api_upvotes.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Objects;
 
 
@@ -45,6 +47,22 @@ public class PostService {
 
         post.setCurtidas(curtidas);
         rep.save(post);
+    }
+
+    public Post update(Long id, Post obj) {
+        try {
+            Post entity = rep.getOne(id);
+            updateData(entity, obj);
+            return rep.save(entity);
+        }catch(EntityNotFoundException e) {
+            throw new ResourceNotFoundException(id);
+        }
+    }
+    private void updateData(Post entity, Post obj) {
+
+        entity.setTitulo(obj.getTitulo());
+        entity.setDescricao(obj.getDescricao());
+
     }
 
     }

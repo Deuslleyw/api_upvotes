@@ -41,6 +41,12 @@ public class PostController {
 
         return ResponseEntity.noContent().build();
     }
+    @PutMapping (value = "/{id}")
+    public ResponseEntity<Post> update(@PathVariable Long id, @RequestBody Post obj){
+        obj = service.update(id, obj);
+        return ResponseEntity.ok().body(obj);
+    }
+
 
 
 
